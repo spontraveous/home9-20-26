@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #12172B;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Slow-drifting aurora behind the hero: royal purple night bleeding into
+   green. One orchestrated ambient moment, not a per-element hover effect. */
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    #170B33 0%,
+    #170B33 32%,
+    #4C1D95 58%,
+    #0F5132 76%,
+    #22C55E 90%,
+    #A855F7 100%
+  );
+  background-size: 100% 220%;
+  animation: aurora 26s ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  0%   { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky {
+    animation: none;
+    background-position: 0% 55%;
+  }
+}
+
+/* Postmark ring used as a decorative, thematic mark rather than a generic badge */
+.postmark {
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+/* Perforated / ticket-stub edge for the guess card, standing in for the
+   generic rounded-card-plus-shadow pattern */
+.stub-edge {
+  position: relative;
+}
+.stub-edge::before,
+.stub-edge::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #12172B;
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.stub-edge::before { left: -11px; }
+.stub-edge::after { right: -11px; }
+
+.dashed-divider {
+  border-top: 2px dashed rgba(18, 23, 43, 0.25);
+}
+
+:focus-visible {
+  outline: 2px solid #FF6B35;
+  outline-offset: 3px;
+}
