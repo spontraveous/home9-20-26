@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Header from "./Header.jsx";
 
 const container = {
   hidden: {},
@@ -16,6 +17,7 @@ export default function Hero({ onScrollToGuess }) {
   return (
     <section className="relative min-h-[100svh] flex items-center overflow-hidden text-paper">
       <div className="sky" aria-hidden="true" />
+      <Header />
       <div className="relative z-10 mx-auto w-full max-w-4xl px-6 py-28 text-center">
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.span
@@ -36,8 +38,9 @@ export default function Hero({ onScrollToGuess }) {
             variants={rise}
             className="mx-auto mt-8 max-w-xl text-lg text-mist sm:text-xl"
           >
-            We made it up. Nobody outside our team has defined it correctly —
-            yet. Get it right and you're in, before anyone else.
+            We made it up — it's not a misspelling of "spontaneous." Nobody
+            outside our team has defined it correctly yet. Get it right and
+            you're in, before anyone else.
           </motion.p>
 
           <motion.div variants={rise} className="mt-12">

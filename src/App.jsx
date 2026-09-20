@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Hero from "./components/Hero.jsx";
 import GuessPanel from "./components/GuessPanel.jsx";
+import Disambiguation from "./components/Disambiguation.jsx";
 import Waitlist from "./components/Waitlist.jsx";
 import Footer from "./components/Footer.jsx";
 
@@ -14,6 +15,7 @@ export default function App() {
       <div ref={guessRef}>
         <GuessPanel onGuessResult={setResult} />
       </div>
+      <Disambiguation />
       <Waitlist guess={result.guess} correct={result.correct} />
       <Footer />
     </main>

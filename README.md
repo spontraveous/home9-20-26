@@ -75,18 +75,93 @@ marked correct if it contains both a "spontaneous"-flavored word and a
 "travel"-flavored word (see `SPONTANEOUS_WORDS` / `TRAVEL_WORDS`) — loosen
 or tighten those lists to make the game easier or harder.
 
+## SEO / LLMO (making sure it isn't read as a typo for "spontaneous")
+
+Before deploying, replace the placeholder domain `https://spontraveous.com`
+with your real one — it's used in `index.html` (canonical link, Open Graph
+tags, JSON-LD `@id`/`url` fields) and in `public/robots.txt` and
+`public/sitemap.xml`. A quick way to find every occurrence:
+
+```bash
+grep -rl "spontraveous.com" .
+```
+
+What's in place, and why:
+
+- **Explicit disambiguation, in three places at once** — the `<title>`,
+  meta description, hero subhead, and a visible FAQ section
+  (`src/components/Disambiguation.jsx`) all state plainly that
+  "spontraveous" is a coined word, not a misspelling of "spontaneous."
+  Repetition across visible copy is what actually shifts how both search
+  engines and LLMs represent an unfamiliar word — a single hidden tag
+  won't do it.
+- **Matching JSON-LD structured data** — `index.html` has `DefinedTerm` and
+  `FAQPage` schema (`@type: DefinedTerm`, `@type: FAQPage`) with the exact
+  same question ("Is spontraveous a misspelling of spontaneous?") and
+  answer as the visible FAQ. Search and LLM crawlers check that structured
+  data matches on-page content, so keep these two in sync if you edit
+  either one. `DefinedTerm` in particular exists for exactly this
+  case — telling machines "this is a specific term with this specific
+  meaning," rather than leaving them to infer one.
+- **A no-JS fallback** — the `<noscript>` block in `index.html` repeats the
+  core definition and disambiguation as plain text, so bots that don't
+  execute JavaScript (some AI crawlers still don't) see the same message
+  as a browser would.
+- **`robots.txt`** explicitly allows major AI/answer-engine crawlers
+  (GPTBot, Google-Extended, ClaudeBot, PerplexityBot, and others) in
+  addition to standard search bots, since LLMO depends on those crawlers
+  being able to fetch the page at all.
+- **Open Graph / Twitter cards + `public/og-image.png`** so links shared in
+  Slack, X, iMessage, etc. show the real word and definition instead of a
+  blank preview — another signal that reinforces the correct spelling
+  wherever the link travels.
+- **`sitemap.xml`** for the single page, referenced from `robots.txt`.
+
+None of this guarantees any specific engine won't autocorrect the word on
+its own — that's outside what a page's own markup can control — but it
+gives search engines and LLMs the clearest possible signal that
+"spontraveous" is intentional and has its own meaning.
+
+## Logo & favicon
+
+The mark is a tilted two-tone compass needle inside a perforated ring — the
+same postmark/stamp motif used for the guess card elsewhere on the page —
+in the site's green/purple palette.
+
+- `public/logo-mark.svg` / `public/favicon.svg` — the vector source (same
+  file, two names so both a "logo" and a "favicon" reference resolve).
+  Edit this if you want to tweak the mark; the raster files below were
+  generated from the same shapes, not from this SVG file directly, so
+  regenerate them by hand (or with a tool like `resvg`/Inkscape) if you
+  change it.
+- `favicon.ico`, `favicon-16.png`, `favicon-32.png`, `favicon-48.png` —
+  browser tab icons (the two smallest drop the perforation ring, since it
+  just turns to noise at that size).
+- `apple-touch-icon.png` (180×180) — iOS home-screen icon.
+- `icon-192.png` / `icon-512.png` + `site.webmanifest` — Android/PWA icons.
+- `logo-mark.png` (1024×1024) — full-resolution raster for anywhere else
+  you need it (app store listing, print, etc).
+- On the page itself, `src/components/Header.jsx` renders the SVG mark plus
+  the wordmark, pinned over the hero.
+
 ## Project structure
 
 ```
+public/
+  robots.txt         allows standard + AI/LLM crawlers
+  sitemap.xml
+  og-image.png        social preview image
 src/
   components/
-    Hero.jsx        hero + animated dawn-sky background
-    GuessPanel.jsx   the guessing game and reveal
-    Waitlist.jsx     email capture, posts to /api/subscribe
+    Hero.jsx           hero + animated aurora background
+    GuessPanel.jsx      the guessing game and reveal
+    Disambiguation.jsx  visible FAQ, mirrors the JSON-LD in index.html
+    Waitlist.jsx        email capture, posts to /api/subscribe
     Footer.jsx
   App.jsx
   index.css
+index.html             meta tags, Open Graph, JSON-LD, noscript fallback
 worker/
-  index.js           serves the built app + /api/subscribe → Brevo
+  index.js             serves the built app + /api/subscribe → Brevo
 wrangler.toml
 ```

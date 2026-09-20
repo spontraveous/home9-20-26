@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- perforation ring: punches 20 small holes out of the disc, stamp-style -->
+  <mask id="perf">
+    <rect x="0" y="0" width="100" height="100" fill="white" />
+    <g fill="black">
+      <circle cx="50" cy="3.4" r="1.8" />
+      <circle cx="64.7" cy="6.2" r="1.8" />
+      <circle cx="77.6" cy="13.6" r="1.8" />
+      <circle cx="87.6" cy="24.6" r="1.8" />
+      <circle cx="94" cy="38" r="1.8" />
+      <circle cx="96.6" cy="50" r="1.8" />
+      <circle cx="94" cy="62" r="1.8" />
+      <circle cx="87.6" cy="75.4" r="1.8" />
+      <circle cx="77.6" cy="86.4" r="1.8" />
+      <circle cx="64.7" cy="93.8" r="1.8" />
+      <circle cx="50" cy="96.6" r="1.8" />
+      <circle cx="35.3" cy="93.8" r="1.8" />
+      <circle cx="22.4" cy="86.4" r="1.8" />
+      <circle cx="12.4" cy="75.4" r="1.8" />
+      <circle cx="6" cy="62" r="1.8" />
+      <circle cx="3.4" cy="50" r="1.8" />
+      <circle cx="6" cy="38" r="1.8" />
+      <circle cx="12.4" cy="24.6" r="1.8" />
+      <circle cx="22.4" cy="13.6" r="1.8" />
+      <circle cx="35.3" cy="6.2" r="1.8" />
+    </g>
+  </mask>
+  <circle cx="50" cy="50" r="48" fill="#170B33" mask="url(#perf)" />
+
+  <!-- tilted compass-needle mark -->
+  <g transform="rotate(-16 50 50)">
+    <polygon points="50,20 78,50 22,50" fill="#22C55E" />
+    <polygon points="50,80 78,50 22,50" fill="#A855F7" />
+    <polyline points="50,20 78,50 50,80 22,50 50,20" fill="none" stroke="#F5F3FF" stroke-width="2.4" stroke-linejoin="round" />
+  </g>
+  <circle cx="50" cy="50" r="4.2" fill="#F5F3FF" />
+</svg>

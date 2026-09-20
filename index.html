@@ -3,15 +3,140 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>spontraveous — guess it, get in early</title>
-    <meta name="description" content="Nobody's cracked the definition yet. Guess right and lock in founding member perks before spontraveous launches." />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>" />
+
+    <!-- ================= Primary SEO ================= -->
+    <!-- The exact string "spontraveous" appears early in the title and
+         description on purpose, paired with an explicit "not spontaneous"
+         disambiguation, so search engines and LLM answer engines index it
+         as its own coined term rather than folding it into a misspelling
+         of "spontaneous." Replace https://spontraveous.com everywhere in
+         this file (and in robots.txt / sitemap.xml) with your real domain
+         before deploying. -->
+    <title>Spontraveous (not "spontaneous") — guess the meaning, get in early</title>
+    <meta name="description" content="Spontraveous is a made-up word, not a misspelling of &quot;spontaneous.&quot; Nobody outside the team has defined it correctly yet. Guess right and lock in founding member perks before launch." />
+    <meta name="keywords" content="spontraveous, spontraveous meaning, what does spontraveous mean, spontraveous definition, is spontraveous a word, founding member waitlist" />
+    <link rel="canonical" href="https://spontraveous.com/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#170B33" />
+
+    <!-- ================= Open Graph / Twitter ================= -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Spontraveous" />
+    <meta property="og:title" content="Spontraveous — not a typo for &quot;spontaneous&quot;" />
+    <meta property="og:description" content="A made-up word nobody's defined correctly yet. Guess what spontraveous means and get first access as a founding member." />
+    <meta property="og:url" content="https://spontraveous.com/" />
+    <meta property="og:image" content="https://spontraveous.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spontraveous — not a typo for &quot;spontaneous&quot;" />
+    <meta name="twitter:description" content="A made-up word nobody's defined correctly yet. Guess what it means and get first access as a founding member." />
+    <meta name="twitter:image" content="https://spontraveous.com/og-image.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- ================= Structured data (JSON-LD) =================
+         Lives as static markup in <head>, so it's readable by crawlers
+         and answer-engine bots that don't execute the React app's JS.
+         DefinedTerm is the schema.org type built for exactly this case:
+         telling machines "this is a specific coined term with this
+         specific meaning," which is the strongest structured signal we
+         can give against it being auto-corrected to "spontaneous." -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://spontraveous.com/#website",
+          "url": "https://spontraveous.com/",
+          "name": "Spontraveous",
+          "alternateName": "spontraveous.com",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://spontraveous.com/#organization",
+          "name": "Spontraveous",
+          "url": "https://spontraveous.com/",
+          "logo": "https://spontraveous.com/logo-mark.png"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Spontraveous",
+          "url": "https://spontraveous.com/",
+          "description": "Spontraveous (adjective): describes a trip booked before doubt has time to catch up with you. A coined word, not a misspelling of \"spontaneous.\"",
+          "inDefinedTermSet": "https://spontraveous.com/#glossary",
+          "termCode": "spontraveous"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://spontraveous.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is \"spontraveous\" a misspelling of \"spontaneous\"?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Spontraveous is a deliberately coined word, distinct from \"spontaneous.\" It blends the idea of spontaneity with travel, and it has its own definition on this page."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does \"spontraveous\" mean?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Spontraveous (adjective): describes a trip booked before doubt has time to catch up with you. It is defined and used only in connection with this brand."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I spell spontraveous correctly?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "S-P-O-N-T-R-A-V-E-O-U-S: spontraveous. It is not spelled or defined the same way as the unrelated word \"spontaneous.\""
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Static fallback for crawlers/bots that don't execute JavaScript.
+         Repeats the core disambiguation and definition as plain, crawlable
+         text so the page's meaning doesn't depend on React having hydrated. -->
+    <noscript>
+      <main style="font-family: sans-serif; max-width: 640px; margin: 0 auto; padding: 48px 24px; color: #170B33;">
+        <h1>Spontraveous</h1>
+        <p>
+          <strong>Spontraveous is not a misspelling of "spontaneous."</strong>
+          It's a coined word with its own meaning, revealed to anyone who
+          guesses it correctly.
+        </p>
+        <p>
+          Spontraveous (adjective): describes a trip booked before doubt has
+          time to catch up with you.
+        </p>
+        <p>
+          Guess correctly and you become a founding member with first access
+          and locked-in pricing when the product launches. Join the waitlist
+          either way to hear when it does.
+        </p>
+      </main>
+    </noscript>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
